@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfólio Tecnológico | Preto e Verde Neon</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --neon-green: #0f0;
+            --dark-neon: #00cc44;
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --card-bg: #111111;
+            --text-color: #ffffff;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(0, 204, 68, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(0, 204, 68, 0.05) 0%, transparent 20%);
+        }
+
+        .grid-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.1;
+            background-image: 
+                linear-gradient(to right, var(--neon-green) 1px, transparent 1px),
+                linear-gradient(to bottom, var(--neon-green) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header e Navegação */
+        header {
+            background-color: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--neon-green);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px var(--neon-green);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 5px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--neon-green);
+            text-shadow: 0 0 5px var(--neon-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--neon-green);
+            transition: width 0.3s ease;
+            box-shadow: 0 0 5px var(--neon-green);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Seção Hero */
+        .hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--neon-green), var(--dark-neon));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .typing-text {
+            color: var(--neon-green);
+            font-weight: bold;
+            border-right: 2px solid var(--neon-green);
+            animation: blink 0.7s infinite;
+            display: inline-block;
+            padding-right: 5px;
+        }
+
+        @keyframes blink {
+            0%, 100% { border-color: var(--neon-green); }
+            50% { border-color: transparent; }
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: transparent;
+            color: var(--neon-green);
+            text-decoration: none;
+            border: 2px solid var(--neon-green);
+            border-radius: 5px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn:hover {
+            color: var(--dark-bg);
+            text-shadow: none;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--neon-green);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 0;
+            box-shadow: 0 0 20px var(--neon-green);
+        }
+
+        /* Seções comuns */
+        section {
+            padding: 100px 0;
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--neon-green);
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        section h2::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 3px;
+            background-color: var(--neon-green);
+            margin: 15px auto 0;
+            box-shadow: 0 0 10px var(--neon-green);
+        }
+
+        /* Sobre */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .skill {
+            padding: 8px 15px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--neon-green);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .skill:hover {
+            background-color: var(--neon-green);
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px var(--neon-green);
+            transform: translateY(-3px);
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0, 255, 0, 0.2);
+            position: relative;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Projetos */
+        .projects {
+            background-color: var(--darker-bg);
+            position: relative;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--neon-green);
+            box-shadow: 0 15px 30px rgba(0, 255, 0, 0.2);
+        }
+
+        .project-image {
+            height: 200px;
+            background: linear-gradient(45deg, var(--dark-bg), var(--darker-bg));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-green);
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(0, 255, 0, 0.2), transparent);
+            animation: shine 2s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            20% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-info h3 {
+            margin-bottom: 10px;
+            color: var(--neon-green);
+        }
+
+        .project-info p {
+            color: #aaa;
+            margin-bottom: 15px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 15px;
+        }
+
+        .project-tag {
+            padding: 4px 10px;
+            background-color: rgba(0, 255, 0, 0.1);
+            border-radius: 15px;
+            font-size: 0.8rem;
+            color: var(--neon-green);
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--neon-green);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .project-link i {
+            margin-left: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-link:hover {
+            text-shadow: 0 0 5px var(--neon-green);
+        }
+
+        .project-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* Contato */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: var(--neon-green);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--card-bg);
+            border: 1px solid #333;
+            border-radius: 5px;
+            font-size: 1rem;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--neon-green);
+            box-shadow: 0 0 10px rgba(0, 255, 0, 0.2);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: var(--darker-bg);
+            color: var(--text-color);
+            text-align: center;
+            padding: 50px 0 30px;
+            border-top: 1px solid var(--neon-green);
+        }
+
+        .social-links {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a:hover {
+            background-color: var(--neon-green);
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px var(--neon-green);
+            transform: translateY(-5px);
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            border: 2px solid var(--neon-green);
+            color: var(--neon-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--neon-green);
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px var(--neon-green);
+            transform: translateY(-5px);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="grid-lines"></div>
+    
+    <!-- Cabeçalho com Navegação -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Portifólio Principal</div>
+                <ul class="nav-links">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#projects">Projetos</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Seção Hero -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Lucien Kauã Souza de Oliveira</h1>
+                <p>A curiosidade pode abrir portas incríveis, mas somente o esforço, a perseverança e a disciplina podem lhe fazer trilhar com sucesso os caminhos que se abrem. - Lucien Kauã</p>
+                <p>Especialista em <span class="typing-text">Análise de Dados</span></p>
+                <a href="#projects" class="btn">Veja Meus Projetos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Sobre -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Sobre Mim</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><i>Sou um desenvolvedor Backend com mais de 4 anos de experiência em Python e seus diversos Frameworks. Como analista de dados, tenho experiência com Power BI, Excel e outras ferramentas de análise e visualização de dados, incluindo o uso do próprio Python quando conveniente. Gosto de automatizar processos e tarefas repetitivas. Crio aplicações completas com auxílio de ferramentas de Inteligência Artificial!</i></p>
+                    <p><i>Minha jornada começou há mais 5 anos, no meu curso técnico em Informática no IFRN - Campus Macau e desde então tenho me dedicado a criar soluções utilizando meus conhecimentos em programação, de forma eficiente, para clientes e empresas onde trabalhei.</i></p>
+                    <p><i>Cristão, fã de Jogos Eletrônicos da franquia Pokémon, eclético, curto esportes e não gosto de multidões. Acredito que a combinação entre técnica e criatividade é a chave para projetos excepcionais.</i></p>
+                    
+                    <div class="skills">
+                        <span class="skill">Python</span>
+                        <span class="skill">Make</span>
+                        <span class="skill">Excel</span>
+                        <span class="skill">Django</span>
+                        <span class="skill">Flask</span>
+                        <span class="skill">Docker</span>
+                        <span class="skill">Git</span>
+                        <span class="skill">GitHub</span>
+                        <span class="skill">Power BI</span>
+                        <span class="skill">Inteligência Artificial</span>
+                        <span class="skill">Google Cloud Platform</span>
+                        <span class="skill">Virtualização (GCP e Amazon AWS)</span>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://i.ibb.co/Vcr2CY1c/IMG-20250825-202607-985.jpg" alt="IMG-20250825-202607-985" border="0">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Projetos -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2>Meus Projetos</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://i.ibb.co/5WXqS5Mv/Captura-de-tela-2025-09-01-165832.png" alt="Imagem de Fluxo de trabalho no Make com alguns Nodes." border="0">
+                    </div>
+                    <div class="project-info">
+                        <h3>Coleta automática de preços de Combustíveis mais baratos na região de Natal - RN</h3>
+                        <p>Integrado diretamente à API da Sefaz do portal da Nota Potiguar, fornecendo informações seguras e assertivas sobre os preços dos Combustíveis mais baratos em tempo real.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Make</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Docker</span>
+                            <span class="project-tag">Google Cloud</span>
+                            <span class="project-tag">Google Sheets</span>
+                        </div>
+                        <a href="#" class="project-link">Ver Projeto <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image">
+                        <img src="https://i.ibb.co/DDynxd5s/Captura-de-tela-2025-09-01-173334.png" alt="Imagem de execução do Agente no terminal do VSCode, IDE de desenvolvimento." border="0">
+                    </div>
+                    <div class="project-info">
+                        <h3>Criação de Agente para Leitura e Interpretação de imagens com ou sem texto para criação de relatórios</h3>
+                        <p>Agente criado com Groq utilizando o modelo 
+meta-llama/llama-4-scout-17b-16e-instruct para ler e interpretar imagens, sendo capaz de gerar relatórios, opinar sobre um tema ou gerar uma história através daquela imagem.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Groq</span>
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">API</span>
+                            <span class="project-tag">Automação</span>
+                            <span class="project-tag">Visão computacional</span>
+                        </div>
+                        <a href="#" class="project-link">Ver Projeto <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-image">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="project-info">
+                        <h3>Dashboard de Gerência Comercial no Power BI com Integração via API Pipedrive</h3>
+                        <p>Dashboard completo com mais de 8 indicadores para acompanhamento estratégico por parte da equipe de Gestão Comercial. O relatório é extremamente estratégico e conta com diversos filtros, incluindo visuais Microsoft de busca. Integração feita via API do Pipedrive e lógica completamente feita com IA.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Power BI</span>
+                            <span class="project-tag">Excel</span>
+                            <span class="project-tag">API Pipedrive</span>
+                            <span class="project-tag">Automação</span>
+                            <span class="project-tag">API Pipedrive</span>
+                            <span class="project-tag">Análise de Dados</span>
+                        </div>
+                        <a href="#" class="project-link">Ver Projeto <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seção Contato -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Entre em Contato</h2>
+            <form class="contact-form" id="whatsappForm">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" id="name" placeholder="Seu nome completo" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Seu endereço de email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" placeholder="Sua mensagem..." required></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar Mensagem</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://github.com/lucienkaua" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/lucien-kauã-souza-de-oliveira-8a9b65276" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="https://www.instagram.com/lucien.kaua?igsh=ZzlmZXhrM2w0cnA4" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.youtube.com/@lucienkaua" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p>&copy; 2025 Portfólio Tech - Lucien Kauã Souza de Oliveira. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <a href="#home" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Efeito de digitação
+        const typingText = document.querySelector('.typing-text');
+        const phrases = ['Análise de Dados ', 'Automação de Processos ', 'Desenvolvimento Backend ', 'Inteligência Artificial '];
+        let phraseIndex = 0;
+        let letterIndex = 0;
+        let currentPhrase = '';
+        let isDeleting = false;
+        let isEnd = false;
+
+        function type() {
+            isEnd = false;
+            
+            if (!isDeleting && letterIndex <= phrases[phraseIndex].length) {
+                currentPhrase = phrases[phraseIndex].substring(0, letterIndex);
+                letterIndex += 1;
+                typingText.textContent = currentPhrase;
+            }
+
+            if (isDeleting && letterIndex >= 0) {
+                currentPhrase = phrases[phraseIndex].substring(0, letterIndex);
+                letterIndex -= 1;
+                typingText.textContent = currentPhrase;
+            }
+
+            if (letterIndex === phrases[phraseIndex].length) {
+                isEnd = true;
+                isDeleting = true;
+            }
+
+            if (isDeleting && letterIndex === 0) {
+                isDeleting = false;
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+            }
+
+            const speedUp = 50;
+            const normalSpeed = 100;
+            const time = isEnd ? 1000 : isDeleting ? speedUp : normalSpeed;
+            setTimeout(type, time);
+        }
+
+        // Iniciar o efeito de digitação quando a página carregar
+        window.addEventListener('DOMContentLoaded', () => {
+            type();
+            
+            // Smooth scrolling para links de navegação
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Form submission para WhatsApp
+            document.getElementById('whatsappForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Obter valores do formulário
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const message = document.getElementById('message').value;
+                
+                // Criar mensagem formatada
+                const whatsappMessage = `Informações para contato:${name} (${email}). ${message}`;
+                
+                // Codificar a mensagem para URL
+                const encodedMessage = encodeURIComponent(whatsappMessage);
+                
+                // SUBSTITUIR pelo seu número de WhatsApp (apenas números)
+                const phoneNumber = '5584998360702';
+                
+                // Criar o link do WhatsApp
+                const whatsappURL = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+                
+                // Abrir o WhatsApp
+                window.open(whatsappURL, '_blank');
+                
+                // Limpar o formulário (opcional)
+                this.reset();
+            });
+            
+            // Mostrar/ocultar botão de voltar ao topo
+            const backToTopButton = document.querySelector('.back-to-top');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    backToTopButton.style.opacity = '1';
+                    backToTopButton.style.visibility = 'visible';
+                } else {
+                    backToTopButton.style.opacity = '0';
+                    backToTopButton.style.visibility = 'hidden';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
